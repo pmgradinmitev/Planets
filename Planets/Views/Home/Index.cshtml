@@ -1,8 +1,48 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model List<Planet>;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col-12">
+        <h1>Planet list</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card mt-5 border-primary shadow-sm">
+            <div class="card-header bg-primary bg-gradient text-white d-flex justify-content-between">
+                <div>
+                    <i class="bi bi-list"></i>Planets
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive" style="overflow-y: hidden">
+                    <!-- align-middle text-nowrap -->
+                    <table class="table table-bordered table-hover align-middle text-nowrap m-0" style="border-style: hidden;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Diameter in km</th>
+                                <th>Distance from sun in AU</th>
+                                <th>Number of moons</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var planet in Model)
+                            {
+                                <tr>
+                                    <td>@planet.Name</td>
+                                    <td>@planet.DiameterInKm</td>
+                                    <td>@planet.DistanceFromSunInAu</td>
+                                    <td>@planet.NumberOfMoons</td>
+                                    <td>@planet.Notes</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

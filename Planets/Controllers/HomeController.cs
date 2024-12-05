@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Planets.Entities;
 using Planets.Models;
+using Planets.Services.IServices;
 using System.Diagnostics;
 
 namespace Planets.Controllers
@@ -8,14 +10,18 @@ namespace Planets.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private IPlanetService _planetService;
+        
+        public HomeController(ILogger<HomeController> logger, IPlanetService planetService)
         {
             _logger = logger;
+            _planetService = planetService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Planet> list = _planetService.GetPlanetList();
+            return View(list);
         }
 
         public IActionResult Privacy()
